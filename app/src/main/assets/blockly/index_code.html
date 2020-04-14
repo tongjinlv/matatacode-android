@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="google" value="notranslate">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=no, width=device-width,initial-scale=1.0" />
+  <title>MatataCode</title>
+  <link rel="stylesheet" href="style_code.css">
+  <script src="appengine/storage.js"></script>
+  <script src="blockly_compressed.js"></script>
+  <script src="blocks_compressed.js"></script>
+  <script src="javascript_compressed.js"></script>
+  <script src="python_compressed.js"></script>
+  <script src="code_code.js"></script>
+<!-- 新增的matata块 -->
+  <script src="blocks/led.js"></script>
+  <script src="blocks/motion.js"></script>
+  <script src="blocks/music.js"></script>
+  <script src="blocks/timer.js"></script>
+  <script src="blocks/value.js"></script>
+  <script src="blocks/loop.js"></script>
+  <script src="blocks/function.js"></script>
+<!--  针对新增matata块的编译器-->
+  <script src="generators/python/led.js"></script>
+  <script src="generators/python/motion.js"></script>
+  <script src="generators/python/music.js"></script>
+  <script src="generators/python/timer.js"></script>
+  <script src="generators/python/function.js"></script>
+  <script src="generators/python/value.js"></script>
+  <script src="generators/python/loop.js"></script>
+
+  <script src="generators/javascript/led.js"></script>
+  <script src="generators/javascript/motion.js"></script>
+  <script src="generators/javascript/music.js"></script>
+  <script src="generators/javascript/timer.js"></script>
+  <script src="generators/javascript/function.js"></script>
+  <script src="generators/javascript/value.js"></script>
+  <script src="generators/javascript/loop.js"></script>
+  <!--  针对新增matata块的编译器-->
+  <script src="generators/javascript/led_new.js"></script>
+  <script src="generators/javascript/sensor.js"></script>
+  <script src="generators/javascript/wheel.js"></script>
+  <script src="blocks/led_new.js"></script>
+  <script src="blocks/sensor.js"></script>
+  <script src="blocks/wheel.js"></script>
+  <script src="generators/python/led_new.js"></script>
+  <script src="generators/python/sensor.js"></script>
+  <script src="generators/python/wheel.js"></script>
+  
+</head>
+<body>
+  <table width="100%" height="100%">
+    <tr>
+      <td>
+        <h1 style="display:none;">
+          <span id="title">MatataCode</span>
+        </h1>
+      </td>
+<!--      <td class="farSide">-->
+<!--        <select style="display:none;" id="languageMenu"></select>-->
+<!--      </td>-->
+    </tr>
+   <tr>
+        <td colspan=2>
+            <table width="100%">
+                <tr id="tabRow" style="display:none;" height="8%">
+                    <button id="matataButton" class="logo primary" title="MatataCode">
+                        <img src='media/1x1.gif' class="icon_logo">
+                    </button>
+                    <input id="textInput" style="display:none;" type="text" value="This is my code!" class="matata_code_textinput">
+                    <button id="loadcodeButton" class="notext" title="LoadCode">
+                        <img src='media/1x1.gif' class="matata_btn icon_open">
+                    </button>
+                    <button id="deletecodeButton" class="notext" title="DeleteCode">
+                        <img src='media/1x1.gif' class="matata_btn icon_delete">
+                    </button>
+                    <button id="savecodeButton" class="notext" title="SaveCode">
+                        <img src='media/1x1.gif' class="matata_btn icon_save">
+                    </button>
+                    <button id="connectButton" class="notext" title="Connect">
+                        <img src='media/1x1.gif' class="matata_btn icon_ble">
+                    </button>
+                    <button id="disconnectButton" style="display:none;" class="notext" title="DisConnect">
+                        <img src='media/1x1.gif' class="matata_btn icon_ble_linked">
+                    </button>
+                    <button id="updateButton" style="display:none;" class="notext" title="Help">
+                        <img src='media/1x1.gif' class="matata_btn icon_update">
+                    </button>
+                    <button id="helpButton" style="display:none;" class="notext" title="Help">
+                        <img src='media/1x1.gif' class="matata_btn icon_help">
+                    </button>
+                    <button id="trashButton" class="notext" title="CleanUp">
+                        <img src='media/1x1.gif' class="matata_btn icon_clean">
+                    </button>
+                    <button id="runButton" class="notext" title="RunCode">
+                        <img src='media/1x1.gif' class="matata_btn icon_play">
+                    </button>
+                    
+                    <button id="stopButton" style="display:none;" class="notext" title="Stop">
+                        <img src='media/1x1.gif' class="matata_btn icon_play">
+                    </button>
+                    <!--  stopBtn is bind into runButton, set not display -->
+                    
+                    <button id="checkcodeButton" style="display:none;" class="notext" title="CheckCode">
+                        <img src='media/1x1.gif' class="icon_open">
+                    </button>
+                    <!--  checkcodeButton is bind into input text, set not display -->
+                    <td id="tab_blocks" style="display:none;" class="tabon">Blocks</td>
+                    <td id="tab_python" style="display:none;" class="taboff">MatataCode</td>
+                    <td id="tab_javascript" style="display:none;" class="taboff">MatataCode</td>
+                    <td id="tab_xml" style="display:none;" class="taboff">XML</td>
+                    <td class="tabmin" style="display:none;">
+                        <button id="linkButton" style="display:none;" class="notext" title="...">
+                            <img src='media/1x1.gif' class="icon_ble">
+                        </button>
+                        <!--  link btn is an origin blockly btn, it's off in matatacode , just set display:none;  -->
+                    </td>
+                    <td style="display:none;" class="tabmax">
+                        <select id="languageMenu"></select>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+      <td height="99%" colspan=2 id="content_area">
+      </td>
+    </tr>
+  </table>
+  <div id="content_blocks" class="content"></div>
+  <pre id="content_python" class="content"></pre>
+  <pre id="content_javascript" class="content"></pre>
+  <textarea id="content_xml" class="content" wrap="off"></textarea>
+
+  <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
+      
+      <category name="MOVE" colour="#8bc333">
+          <block type="motion_forward">
+              <field name="STEP">1</field>
+          </block>
+          <block type="motion_backward">
+              <field name="STEP">1</field>
+          </block>
+          <block type="motion_turnleft">
+              <field name="ANGLE">90degree</field>
+          </block>
+          <block type="motion_turnright">
+              <field name="ANGLE">90degree</field>
+          </block>
+          <block type="motion_do_action">
+              <field name="ACTION_LIST">action1</field>
+          </block>
+          
+          <block type="timer_wait">
+              <field name="SECOND">1</field>
+          </block>
+          <block type="motion_right_optimize">
+              <field name="ANGLE">90degree</field>
+              <value name="NAME">
+                  <shadow type="logic_boolean">
+                      <field name="BOOL">TRUE</field>
+                  </shadow>
+              </value>
+          </block>
+          <block type="motion_left_optimize">
+              <field name="ANGLE">90degree</field>
+              <value name="NAME">
+                  <shadow type="logic_boolean">
+                      <field name="BOOL">TRUE</field>
+                  </shadow>
+              </value>
+          </block>
+          <block type="motion_straight_optimize">
+              <value name="NAME">
+                  <shadow type="logic_boolean">
+                      <field name="BOOL">TRUE</field>
+                  </shadow>
+              </value>
+          </block>
+      </category>
+      <category name="LOOP" colour="#23b435">
+          <block type="controls_repeat_ext">
+              <value name="TIMES">
+                  <shadow type="math_number">
+                      <field name="NUM">10</field>
+                  </shadow>
+              </value>
+          </block>
+          <block type="controls_for">
+              <value name="FROM">
+                  <shadow type="math_number">
+                      <field name="NUM">1</field>
+                  </shadow>
+              </value>
+              <value name="TO">
+                  <shadow type="math_number">
+                      <field name="NUM">10</field>
+                  </shadow>
+              </value>
+              <value name="BY">
+                  <shadow type="math_number">
+                      <field name="NUM">1</field>
+                  </shadow>
+              </value>
+          </block>
+          <block type="controls_flow_statements"></block>
+      </category>
+      <category name="WHEEL" colour="#ec3949">
+          <block type="wheel_control_new">
+              <field name="lspeed">15</field>
+              <field name="rspeed">15</field>
+          </block>
+      </category>
+      <category name="SENSOR" colour="#65c7c8">
+          <block type="sensor">
+              <field name="CONDITION">1</field>
+          </block>
+          <block type="sensor_send_data">
+              <field name="NUMBER">1</field>
+          </block>
+          <block type="sensor_wait_data">
+              <field name="NUMBER">1</field>
+          </block>
+      </category>
+      <category name="LOGIC" colour="#306cb0">
+          <block type="controls_if"></block>
+          <block type="logic_operation"></block>
+          <block type="logic_negate"></block>
+          <block type="logic_boolean"></block>
+          <block type="logic_compare">
+              <field name="OP">LT</field>
+          </block>
+      </category>
+      <category name="MATH" colour="#303CAF">
+          <block type="math_number">
+              <field name="NUM">1</field>
+          </block>
+          <block type="math_number">
+              <field name="NUM">2</field>
+          </block>
+          <block type="math_number">
+              <field name="NUM">5</field>
+          </block>
+          <block type="math_number_property">
+              <value name="NUMBER_TO_CHECK">
+                  <shadow type="math_number">
+                      <field name="NUM">0</field>
+                  </shadow>
+              </value>
+          </block>
+          <block type="math_modulo">
+              <value name="DIVIDEND">
+                  <shadow type="math_number">
+                      <field name="NUM">64</field>
+                  </shadow>
+              </value>
+              <value name="DIVISOR">
+                  <shadow type="math_number">
+                      <field name="NUM">10</field>
+                  </shadow>
+              </value>
+          </block>
+          <block type="math_constrain">
+              <value name="VALUE">
+                  <shadow type="math_number">
+                      <field name="NUM">50</field>
+                  </shadow>
+              </value>
+              <value name="LOW">
+                  <shadow type="math_number">
+                      <field name="NUM">1</field>
+                  </shadow>
+              </value>
+              <value name="HIGH">
+                  <shadow type="math_number">
+                      <field name="NUM">100</field>
+                  </shadow>
+              </value>
+          </block>
+          <block type="math_arithmetic">
+              <field name="OP">ADD</field>
+              <value name="A">
+                  <shadow type="math_number">
+                      <field name="NUM">1</field>
+                  </shadow>
+              </value>
+              <value name="B">
+                  <shadow type="math_number">
+                      <field name="NUM">1</field>
+                  </shadow>
+              </value>
+          </block>
+          <block type="math_random_int">
+              <value name="FROM">
+                  <shadow type="math_number">
+                      <field name="NUM">1</field>
+                  </shadow>
+              </value>
+              <value name="TO">
+                  <shadow type="math_number">
+                      <field name="NUM">10</field>
+                  </shadow>
+              </value>
+          </block>
+      </category>
+      <category name="ART" colour="#b31baf">
+          <block type="music_playsong">
+              <field name="MUSIC_LIST">music1</field>
+          </block>
+          <block type="music_do_dance">
+              <field name="DANCE_LIST">dance1</field>
+          </block>
+          <block type="music_alto">
+              <field name="TONE_LIST">do</field>
+              <field name="METER">meter1</field>
+          </block>
+          <block type="music_treble">
+              <field name="TONE_LIST">do</field>
+              <field name="METER">meter1</field>
+          </block>
+          <block type="music_playmelody">
+              <field name="MELODY_LIST">melody1</field>
+          </block>
+          <block type="sensor_led">
+              <field name="LED">all</field>
+              <field name="COLOR">white</field>
+              <field name="LEVEL">1</field>
+          </block>
+          <block type="bot_led">
+              <field name="LED">left</field>
+              <field name="COLOR">white</field>
+              <field name="LEVEL">1</field>
+          </block>
+      </category>
+      <category name="FUNC" colour="#9C1DAF" custom="PROCEDURE"></category>
+      <category name="VAR" colour="#B11F6A" custom="VARIABLE"></category>
+      
+  </xml>
+  
+</body>
+</html>

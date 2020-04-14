@@ -1,0 +1,88 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.chaquo.python'
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.matatalab.matatacode"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 225
+        versionName "2.1.5.7"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi-v7a','x86',  'x86_64', 'arm64-v8a'
+        }
+    }
+    signingConfigs {
+        config {
+            keyAlias 'matatacodekey'
+            keyPassword 'matatacode2019'
+            storeFile file('./keystore/matatacodekey.jks')
+            storePassword 'matatacode2019'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                //在这里修改apk文件名
+                outputFileName = "MatataCode_Alpha_v${variant.versionName}.apk"
+            }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            python {
+                srcDirs = ["src/main/python"]
+                srcDir "src/main/python"
+            }
+        }
+    }
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    // leakcanary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+    implementation 'com.google.android.gms:play-services-wearable:10.2.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'no.nordicsemi.android:log:2.2.0'
+    implementation 'no.nordicsemi.android.support.v18:scanner:1.1.0'
+    // The DFU Library is imported automatically from jcenter:
+    implementation 'no.nordicsemi.android:dfu:1.8.1'
+    //  RxJava 与 activity 和 fragment 生命周期绑定
+    implementation 'com.trello.rxlifecycle2:rxlifecycle:2.2.0'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.2.0'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.0'
+    implementation 'com.android.support:gridlayout-v7:28.0.0'
+    implementation files('libs/bsh-2.0b6.jar')
+    implementation(name: 'uiactivityindicatorview', ext: 'aar')
+    implementation 'com.inuker.bluetooth:library:1.4.0'
+}

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/px40"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/px1"
+            android:background="@color/black_color_20" />
+
+        <View
+            android:layout_width="@dimen/px1"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@color/black_color_20" />
+
+        <RadioGroup
+            android:id="@+id/main_rdo_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/first_rdo_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px40"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:textColor="@color/main_tab_text_color"
+                android:textSize="@dimen/text_20sp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/last_rdo_btn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/px40"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center"
+                android:textColor="@color/main_tab_text_color"
+                android:textSize="@dimen/text_20sp"
+                android:textStyle="bold" />
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/content_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/top_layout"
+        android:background="@color/white" />
+
+    <RelativeLayout
+        android:id="@+id/rl_loading_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black_color_50"
+        android:clickable="true">
+
+        <ProgressBar
+            android:layout_width="@dimen/px50"
+            android:layout_height="@dimen/px50"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+</RelativeLayout>

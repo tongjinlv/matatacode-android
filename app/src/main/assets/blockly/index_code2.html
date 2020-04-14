@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="google" value="notranslate">
+    <meta name="viewport"
+        content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=no, width=device-width,initial-scale=1.0" />
+    <title>MatataCode</title>
+    <link rel="stylesheet" href="style_code.css">
+    <script src="appengine/storage.js"></script>
+    <script src="blockly_compressed.js"></script>
+    <script src="blocks_compressed.js"></script>
+    <script src="javascript_compressed.js"></script>
+    <script src="python_compressed.js"></script>
+    <script src="code_code.js"></script>
+    <!-- 新增的matata块 -->
+    <script src="blocks/led.js"></script>
+    <script src="blocks/motion.js"></script>
+    <script src="blocks/music.js"></script>
+    <script src="blocks/timer.js"></script>
+    <script src="blocks/value.js"></script>
+    <script src="blocks/loop.js"></script>
+    <script src="blocks/function.js"></script>
+    <!--  针对新增matata块的编译器-->
+    <script src="generators/python/led.js"></script>
+    <script src="generators/python/motion.js"></script>
+    <script src="generators/python/music.js"></script>
+    <script src="generators/python/timer.js"></script>
+    <script src="generators/python/function.js"></script>
+    <script src="generators/python/value.js"></script>
+    <script src="generators/python/loop.js"></script>
+
+    <script src="generators/javascript/led.js"></script>
+    <script src="generators/javascript/motion.js"></script>
+    <script src="generators/javascript/music.js"></script>
+    <script src="generators/javascript/timer.js"></script>
+    <script src="generators/javascript/function.js"></script>
+    <script src="generators/javascript/value.js"></script>
+    <script src="generators/javascript/loop.js"></script>
+    <!--  针对新增matata块的编译器-->
+    <script src="generators/javascript/led_new.js"></script>
+    <script src="generators/javascript/sensor.js"></script>
+    <script src="generators/javascript/wheel.js"></script>
+    <script src="blocks/led_new.js"></script>
+    <script src="blocks/sensor.js"></script>
+    <script src="blocks/wheel.js"></script>
+    <script src="generators/python/led_new.js"></script>
+    <script src="generators/python/sensor.js"></script>
+    <script src="generators/python/wheel.js"></script>
+    <!--  针对matata重写的logic和loops-->
+    <script src="generators/javascript/loops_new.js"></script>
+    <script src="generators/javascript/logic_new.js"></script>
+    <script src="blocks/loops_new.js"></script>
+    <script src="blocks/logic_new.js"></script>
+    <script src="generators/python/loops_new.js"></script>
+    <script src="generators/python/logic_new.js"></script>
+    <!--  针对matata重写的logic和loops-->
+    <script src="generators/javascript/newblocks.js"></script>
+    <script src="blocks/newblocks.js"></script>
+    <script src="generators/python/newblocks.js"></script>
+    <!--  增加了步进的头文件-->
+    <script src="acorn_interpreter.js"></script>
+    <script src="wait_blocks.js"></script>
+</head>
+
+<body>
+    <button id="matataButton" style="display:none;" class="logo primary" title="MatataCode">
+        <img src='media/1x1.gif' class="icon_logo">
+    </button>
+    <input id="textInput" style="display:none;" type="text" value="This is my code!" class="matata_code_textinput">
+    <button id="loadcodeButton" style="display:none;" class="notext" title="LoadCode">
+        <img src='media/1x1.gif' class="matata_btn icon_open">
+    </button>
+    <button id="deletecodeButton" style="display:none;" class="notext" title="DeleteCode">
+        <img src='media/1x1.gif' class="matata_btn icon_delete">
+    </button>
+    <button id="savecodeButton" style="display:none;" class="notext" title="SaveCode">
+        <img src='media/1x1.gif' class="matata_btn icon_save">
+    </button>
+    <button id="connectButton" style="display:none;" class="notext" title="Connect">
+        <img src='media/1x1.gif' class="matata_btn icon_ble">
+    </button>
+    <button id="disconnectButton" style="display:none;" class="notext" title="DisConnect">
+        <img src='media/1x1.gif' class="matata_btn icon_ble_linked">
+    </button>
+    <button id="updateButton" style="display:none;" class="notext" title="Help">
+        <img src='media/1x1.gif' class="matata_btn icon_update">
+    </button>
+    <button id="helpButton" style="display:none;" class="notext" title="Help">
+        <img src='media/1x1.gif' class="matata_btn icon_help">
+    </button>
+    <button id="trashButton" style="display:none;" class="notext" title="CleanUp">
+        <img src='media/1x1.gif' class="matata_btn icon_clean">
+    </button>
+    <button id="runButton" style="display:none;" class="notext" title="RunCode">
+        <img src='media/1x1.gif' class="matata_btn icon_play">
+    </button>
+
+    <button id="stopButton" style="display:none;" class="notext" title="Stop">
+        <img src='media/1x1.gif' class="matata_btn icon_play">
+    </button>
+    <!--  stopBtn is bind into runButton, set not display -->
+
+    <button id="checkcodeButton" style="display:none;" class="notext" title="CheckCode">
+        <img src='media/1x1.gif' class="icon_open">
+    </button>
+    <table width="100%" height="100%">
+        <tr>
+            <td>
+                <h1 style="display:none;">
+                    <span id="title">MatataCode</span>
+                </h1>
+            </td>
+        </tr>
+        <tr style="display:none;">
+            <td colspan=2>
+                <table width="100%">
+                    <tr id="tabRow" style="display:none;" height="8%">
+
+                        <!--  checkcodeButton is bind into input text, set not display -->
+                        <td id="tab_blocks" style="display:none;" class="tabon">Blocks</td>
+                        <td id="tab_python" style="display:none;" class="taboff">MatataCode</td>
+                        <td id="tab_javascript" style="display:none;" class="taboff">MatataCode</td>
+                        <td id="tab_xml" style="display:none;" class="taboff">XML</td>
+                        <td class="tabmin" style="display:none;">
+                            <button id="linkButton" style="display:none;" class="notext" title="...">
+                                <img src='media/1x1.gif' class="icon_ble">
+                            </button>
+                            <!--  link btn is an origin blockly btn, it's off in matatacode , just set display:none;  -->
+                        </td>
+                        <td style="display:none;" class="tabmax">
+                            <select id="languageMenu"></select>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td height="99%" colspan=2 id="content_area">
+            </td>
+        </tr>
+    </table>
+    <div id="content_blocks" class="content"></div>
+    <pre id="content_python" class="content"></pre>
+    <pre id="content_javascript" class="content"></pre>
+    <textarea id="content_xml" class="content" wrap="off"></textarea>
+
+    <xml xmlns="http://www.w3.org/1999/xhtml" id="toolbox" style="display: none;">
+        <category name="%{BKY_TOOLBOX_TITLE_MOTION}" colour="#CCD94A">
+            <block type="motion_forward">
+                <field name="STEP">1</field>
+            </block>
+            <block type="motion_backward">
+                <field name="STEP">1</field>
+            </block>
+            <block type="motion_turnleft">
+                <field name="ANGLE">90degree</field>
+            </block>
+            <block type="motion_turnright">
+                <field name="ANGLE">90degree</field>
+            </block>
+            <block type="motion_length">
+              <field name="DIRECTION">1</field>
+              <field name="LENGTH">10</field>
+            </block>
+            <block type="motion_spin">
+              <field name="DIRECTION">1</field>
+              <field name="ANGEL">90</field>
+            </block>
+            <block type="motion_emotion">
+              <field name="EMOTION">1</field>
+            </block>
+        </category>
+        <category name="%{BKY_TOOLBOX_TITLE_WHEEL}" colour="#C94637">
+            <block type="wheel_speedall">
+                <field name="LDIR">1</field>
+                <field name="LSPEED">5</field>
+                <field name="RDIR">1</field>
+                <field name="RSPEED">5</field>
+            </block>
+            <block type="wheel_stop">
+              <field name="WHICH">1</field>
+            </block>
+            <block type="timer_wait">
+                <field name="SECOND">1</field>
+            </block>
+
+            <block type="timer_wait_ms">
+                <field name="MSTIMES">100</field>
+            </block>
+        </category>
+        <category name="%{BKY_TOOLBOX_TITLE_SENSOR}" colour="#89D9E4">
+            <block type="sensor_waituntil"></block>
+            <!-- <block type="sensor">
+                <field name="CONDITION">1</field>
+            </block> -->
+            <block type="sensor_send_data">
+                <field name="NUMBER">1</field>
+            </block>
+            <!-- <block type="sensor_wait_data">
+                <field name="NUMBER">1</field>
+            </block> -->
+            <block type="get_angle">
+                    <field name="ANGLE">1</field>
+                  </block>
+            <block type="get_channel_rgb">
+                <field name="CHANNEL">R</field>
+              </block>
+              <block type="get_axis">
+                <field name="AXIS">x</field>
+              </block>
+              <block type="get_brightness"></block>
+              <block type="accelerate_check">
+                <field name="CONDITION">1</field>
+              </block>
+              <block type="rgb_check">
+                <field name="CONDITION">1</field>
+              </block>
+              <block type="btn_check">
+                <field name="CONDITION">5</field>
+              </block>
+              <block type="sound_check"></block>
+              <block type="bump_check"></block>
+
+            <block type="data_check">
+                <field name="CONDITION">1</field>
+              </block>
+              <block type="brightness_check">
+                <field name="CONDITION">1</field>
+              </block>
+              <block type="clear_check"></block>
+        </category>
+        <category name="%{BKY_TOOLBOX_TITLE_EFFECT}" colour="#EE8A3A">
+            <block type="music_alto">
+                <field name="TONE_LIST">do</field>
+                <field name="METER">meter1</field>
+            </block>
+            <block type="music_treble">
+                <field name="TONE_LIST">do</field>
+                <field name="METER">meter1</field>
+            </block>
+            <block type="music_playmelody">
+                <field name="MELODY_LIST">melody1</field>
+            </block>
+            <block type="volume_set">
+              <field name="VOL">100</field>
+            </block>
+            <block type="motion_do_action">
+                <field name="ACTION_LIST">action1</field>
+            </block>
+            <block type="music_playsong">
+                <field name="MUSIC_LIST">music1</field>
+            </block>
+            <block type="music_do_dance">
+                <field name="DANCE_LIST">dance1</field>
+            </block>
+            <block type="sensor_led">
+                <field name="LED">plus</field>
+                <field name="COLOR">1</field>
+                <field name="LEVEL">1</field>
+            </block>
+            <block type="sensor_ledrgb">
+              <field name="LED">plus</field>
+              <field name="R">100</field>
+              <field name="G">0</field>
+              <field name="B">0</field>
+            </block>
+            <block type="sensor_ledcyc">
+                <field name="12">#ffffff</field>
+                <field name="1">#ffffff</field>
+                <field name="2">#ffffff</field>
+                <field name="11">#ffffff</field>
+                <field name="3">#ffffff</field>
+                <field name="10">#ffffff</field>
+                <field name="4">#ffffff</field>
+                <field name="9">#ffffff</field>
+                <field name="5">#ffffff</field>
+                <field name="6">#ffffff</field>
+                <field name="7">#ffffff</field>
+                <field name="8">#ffffff</field>
+              </block>
+              <block type="sensor_ledallrgb">
+                <field name="R">100</field>
+                <field name="G">0</field>
+                <field name="B">0</field>
+              </block>
+              <block type="sensor_ledall">
+                <field name="COLOR">1</field>
+                <field name="LEVEL">1</field>
+            </block>
+              <block type="sensor_ledposition">
+                <field name="POSITION">1</field>
+                <field name="COLOR">1</field>
+                <field name="BRIGHTNESS">1</field>
+              </block>
+              <block type="sensor_ledpositionrgb">
+                <field name="POSITION">1</field>
+                <field name="R">0</field>
+                <field name="G">100</field>
+                <field name="B">0</field>
+              </block>
+              <block type="bot_led">
+                  <field name="LED">left</field>
+                  <field name="COLOR">1</field>
+                  <field name="LEVEL">1</field>
+              </block>
+              <block type="bot_eyergb">
+                <field name="LED">left</field>
+                <field name="R">0</field>
+                <field name="G">0</field>
+                <field name="B">100</field>
+              </block>
+              <block type="sensor_ledanimation">
+                <field name="ANIMATION">1</field>
+              </block>
+        </category>
+        <category name="%{BKY_TOOLBOX_TITLE_LOOPS}" colour="#388E3C">
+              <block type="controls_repeat_ext">
+                <value name="TIMES">
+                  <shadow type="math_number">
+                    <field name="NUM">10</field>
+                  </shadow>
+                </value>
+              </block>
+              <block type="controls_whileUntil"></block>
+              <block type="controls_whileUntil">
+                    <field name="MODE">UNTIL</field>
+              </block>
+              <block type="controls_flow_statements"></block>
+        </category>
+        <category name="%{BKY_TOOLBOX_TITLE_LOGIC}" colour="#29B6F6">
+            <block type="controls_if"></block>
+            <block type="logic_operation"></block>
+            <block type="logic_negate"></block>
+            <block type="logic_boolean"></block>
+            <block type="logic_compare">
+                <field name="OP">LT</field>
+            </block>
+        </category>
+        <category name="%{BKY_TOOLBOX_TITLE_MATHS}" colour="#3B7FF8">
+            <block type="math_number">
+                <field name="NUM">1</field>
+            </block>
+            <block type="math_arithmetic">
+                <field name="OP">ADD</field>
+                <value name="A">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="B">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+            </block>
+        </category>
+        <category name="%{BKY_TOOLBOX_TITLE_FUNCTION}" colour="#FFD600" custom="PROCEDURE"></category>
+       <category name="%{BKY_TOOLBOX_TITLE_VARIABLE}" colour="#F09DA2" custom="VARIABLE"></category>
+    </xml>
+
+</body>
+
+</html>

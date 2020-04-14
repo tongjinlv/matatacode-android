@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/code_bg"
+    tools:context=".CodingActivity">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:orientation="horizontal">
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="200"
+                android:orientation="horizontal">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                    <WebView
+                        android:id="@+id/webview1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="left|fill_vertical"
+                        android:background="@mipmap/pic_bound_l"
+                        android:layoutDirection="locale">
+
+                    </ImageView>
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|fill_horizontal"
+                        android:background="@mipmap/pic_bound_t"
+                        >
+                    </ImageView>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="right|fill_vertical"
+                        android:background="@mipmap/pic_bound_r"
+                        >
+                    </ImageView>
+                    <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|fill_horizontal"
+                        android:background="@mipmap/pic_bound_b"
+                        >
+                    </ImageView>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|left"
+                        android:background="@mipmap/pic_bound_lb"
+                        >
+                    </ImageView>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|left"
+                        android:background="@mipmap/pic_bound_lt"
+                        >
+                    </ImageView>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom|right"
+                        android:background="@mipmap/pic_bound_rb"
+                        >
+                    </ImageView>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|right"
+                        android:background="@mipmap/pic_bound_rt"
+                        >
+                    </ImageView>
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="8"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+        </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="8"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="4">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="50">
+
+                    <ImageButton
+                        android:id="@+id/imageButton_ac1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:background="@mipmap/pic_code_back">
+
+                    </ImageButton>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="24">
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="30">
+                    <ImageButton
+                        android:id="@+id/imagebutton_ac2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/pic_code_undo"
+                        android:layout_gravity="bottom">
+
+                    </ImageButton>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="3">
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="25">
+                    <ImageButton
+                        android:id="@+id/imagebutton_ac3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="bottom"
+                        android:background="@mipmap/pic_code_clear">
+
+                    </ImageButton>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="3">
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="30">
+                    <ImageButton
+                        android:id="@+id/imagebutton_ac4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:background="@mipmap/pic_code_restore">
+
+                    </ImageButton>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="20">
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="100"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/imagebutton_ac5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="9px"
+                        android:layout_marginBottom="2px"
+                        android:background="@drawable/btn_round"
+                        android:text="画五角星"
+                        android:textColor="#FFA64C"
+                        android:textSize="9sp">
+
+                    </Button>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="50">
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="80">
+                 <FrameLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:orientation="vertical">
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="horizontal">
+
+                         <LinearLayout
+                             android:layout_width="28dp"
+                             android:layout_height="match_parent"
+                             android:layout_weight="30"></LinearLayout>
+                         <LinearLayout
+                             android:layout_width="0dp"
+                             android:layout_height="fill_parent"
+                             android:layout_weight="70"
+                             >
+                             <Button
+                                 android:id="@+id/imagebutton_ac7"
+                                 android:layout_width="fill_parent"
+                                 android:layout_height="fill_parent"
+                                 android:background="@mipmap/pic_code_folder">
+                             </Button>
+                         </LinearLayout>
+
+                     </LinearLayout>
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="horizontal">
+                         <LinearLayout
+                             android:layout_width="0dp"
+                             android:layout_weight="70"
+                             android:layout_height="fill_parent"
+                             >
+                             <FrameLayout
+                                 android:layout_width="fill_parent"
+                                 android:layout_height="fill_parent"
+                                 >
+                             <Button
+                                 android:id="@+id/imagebutton_ac6"
+                                 android:layout_width="fill_parent"
+                                 android:layout_height="fill_parent"
+                                 android:background="@mipmap/pic_code_blebreak">
+                             </Button>
+                             <ProgressBar
+                                 android:id="@+id/progressBar15"
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:layout_gravity="center"
+                                 style="?android:attr/progressBarStyle"
+                                 />
+                             </FrameLayout>
+                         </LinearLayout>
+                         <LinearLayout
+                             android:layout_width="0dp"
+                             android:layout_height="fill_parent"
+                             android:layout_weight="30"
+                             >
+                         </LinearLayout>
+
+                     </LinearLayout>
+                 </FrameLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="30">
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="100"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="200"
+                    android:orientation="horizontal">
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="19"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="12"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="6">
+                        <Button
+                            android:id="@+id/imagebutton_ac8"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:background="@mipmap/play">
+
+                        </Button>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="6">
+                        <Button
+                            android:id="@+id/imagebutton_ac9"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:background="@mipmap/stop">
+
+                        </Button>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="12"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </FrameLayout>
+
+</RelativeLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@mipmap/towerupdate"
+    tools:context=".FunctionActivity">
+
+
+    <ImageButton
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="252dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintDimensionRatio="w,1:1"
+        tools:layout_editor_absoluteX="5dp"
+        android:orientation="horizontal"
+        android:background="@mipmap/item8"/>
+</android.support.constraint.ConstraintLayout>
