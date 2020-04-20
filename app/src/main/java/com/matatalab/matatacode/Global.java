@@ -483,7 +483,7 @@ public class Global {
         ViewGroup.LayoutParams params = view.getLayoutParams();
         params.width =(int)(width*w/100);
         params.height = (int)(params.width*h/100);
-        MLog.td("tjl","set win.x"+params.width +",winy="+params.height);
+       // MLog.td("tjl","set win.x"+params.width +",winy="+params.height);
         view.setLayoutParams(params);
     }
     public static void setHeightAsHeight(Context context, View view, int w, int h) {

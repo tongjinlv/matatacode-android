@@ -8,10 +8,10 @@
 <!--设置边框线的宽度和颜色-->
 
     <padding
-        android:bottom="5dp"
-        android:left="15dp"
-        android:right="15dp"
-        android:top="5dp" />
+        android:bottom="0dp"
+        android:left="0dp"
+        android:right="0dp"
+        android:top="0dp" />
 
 
 </shape>

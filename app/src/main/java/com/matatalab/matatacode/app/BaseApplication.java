@@ -4,8 +4,10 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.widget.Toast;
 
 import com.matatalab.matatacode.Global;
+import com.matatalab.matatacode.StartActivity;
 import com.matatalab.matatacode.utils.MLog;
 import com.matatalab.matatacode.utils.ProcessUtils;
 import com.matatalab.matatacode.AppConst;
@@ -102,7 +104,7 @@ public class BaseApplication extends Application implements Thread.UncaughtExcep
 
         }
     }
-    private boolean handleException(Throwable ex) {
+    private boolean handleException(final Throwable ex) {
         if (ex == null) {
             return false;
         }
@@ -113,10 +115,8 @@ public class BaseApplication extends Application implements Thread.UncaughtExcep
                 Looper.prepare();
                 MLog.td("tjl", "糟糕:"+str);
                 Looper.loop();
-                MLog.td("tjl", "糟糕:");
             }
         }.start();
-        MLog.td("tjl", ex.getStackTrace().toString());
         return true;
     }
     /**

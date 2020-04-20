@@ -1,28 +1,41 @@
 from java import jclass
+import sys
+import time
+import imp
+import threading
+import inspect
+import ctypes
 
-def greet(name):
-    print("--- hello,%s ---" % name)
+thread1=None
+Python2Java = jclass("com.matatalab.matatacode.model.Python2Java")
+android = Python2Java("python")
+sys.stdout=android
 
-def add(a,b):
-    return a + b
+def _async_raise(tid, exctype):
+    tid = ctypes.c_long(tid)
+    if not inspect.isclass(exctype):
+        exctype = type(exctype)
+    res = ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, ctypes.py_object(exctype))
+    if res == 0:
+        raise ValueError("invalid thread id")
+    elif res != 1:
+        ctypes.pythonapi.PyThreadState_SetAsyncExc(tid, None)
+        raise SystemError("PyThreadState_SetAsyncExc failed")
+ 
+def stop_thread(thread):
+    _async_raise(thread.ident, SystemExit)
 
-def sub(count,a=0,b=0,c=0):
-    return count - a - b -c
-
-def get_list(a,b,c,d):
-    return [a,b,c,d]
-
-def print_list(data):
-    print(type(data))
-    # 遍历Java的ArrayList对象
-    for i in range(data.size()):
-        print(data.get(i))
-
-# python调用Java类 
-def get_java_bean():
-    JavaBean = jclass("com.matatalab.matatacode.model.JavaBean")
-    jb = JavaBean("python")
-    jb.setData("json")
-    jb.setData("xml")
-    jb.setData("xhtml")
-    return jb
+def thread1_run(n):
+    sys.path.append(r"/data/data/com.matatalab.matatacode/run/")
+    imp.load_source('mainmod', '/data/data/com.matatalab.matatacode/run/main.py')
+    android.runover()
+def matatalab_start(var):
+    global thread1
+    thread1 = threading.Thread(target=thread1_run, args=("thread1",))
+    thread1.start()
+    print("thread1 start")
+    return;
+def matatalab_stop(var):
+    stop_thread(thread1)
+    
+    

@@ -233,7 +233,6 @@
                         android:text="画五角星"
                         android:textColor="#FFA64C"
                         android:textSize="9sp">
-
                     </Button>
                 </LinearLayout>
                 <LinearLayout

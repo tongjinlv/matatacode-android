@@ -6,7 +6,7 @@ android {
         applicationId "com.matatalab.matatacode"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 225
+        versionCode 335
         versionName "2.1.5.7"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -26,8 +26,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //minifyEnabled true
+            //proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }
         debug {

@@ -65,11 +65,11 @@ public class MyBluetooth {
     {
         AppConst.onNotify=null;
         if(AppConst.mClient==null)return;
-        MLog.hd("tjl","write byte=",bytes);
+       // MLog.hd("tjl","write byte=",bytes);
         AppConst.mClient.write(AppConst.DeviceMac, UUID.fromString(AppConst.UUID_SERVICE), UUID.fromString(AppConst.UUID_WRITE), bytes, new BleWriteResponse() {
             @Override
             public void onResponse(int code) {
-                MLog.td("tjl","write,code:"+code);
+               // MLog.td("tjl","write,code:"+code);
             }
         });
     }

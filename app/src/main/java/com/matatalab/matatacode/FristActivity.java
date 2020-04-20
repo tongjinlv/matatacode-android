@@ -216,13 +216,13 @@ public class FristActivity extends RxAppCompatActivity implements MainViewInterf
         System.exit(0);
     }
     public void onBackPressed() {
-      //  CrashReport.testJavaCrash();
-
         MLog.td("tjl" , "onBackPressed()");
-       // if(exitcount==0)ToastUtils.show(getString(R.string.exitshow));
+        //if(exitcount==0) ToastUtils.show(getString(R.string.exitshow));
         if(exitcount==1)
         {
-
+            moveTaskToBack(true);
+            exitcount=0;
+            return;
         }
         exitcount++;
         return;

@@ -191,8 +191,6 @@ public class FileStorageHelper {
 
     public static boolean copyFolder(String fromFile, String toFile)
     {
-        MLog.td("tjl", "-----------------copyFolder"+fromFile);
-        //要复制的文件目录
         File[] currentFiles;
         File root = new File(fromFile);
         if(!root.exists())
@@ -204,7 +202,6 @@ public class FileStorageHelper {
             if (file.isFile()) file.delete();
         }
         currentFiles = root.listFiles();
-        MLog.td("tjl", "-----------------copyFolder"+currentFiles.length);
         File targetDir = new File(toFile);
         if(!targetDir.exists())
         {
@@ -218,7 +215,7 @@ public class FileStorageHelper {
 
             }else
             {
-                MLog.td("tjl", "-----------------copyFolder"+currentFiles[i].getPath());
+                MLog.td("tjl", currentFiles[i].getPath()+" copy to "+currentFiles[i].getName());
                 CopySdcardFile(currentFiles[i].getPath(), toFile + currentFiles[i].getName());
             }
         }

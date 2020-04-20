@@ -198,7 +198,8 @@ public class CodingActivity extends AppCompatActivity implements View.OnClickLis
                             Global.writeFileData(temp , msg);
                             return true;
                         case "stopcode":
-                            AppConst.cliPython.Stop();
+                          //  AppConst.cliPython.Stop();
+                            AppConst.chaquoPython.Exit();
                             result.confirm("js调用了Android的方法成功啦");
                             return true;
                         case "codeend":
@@ -556,8 +557,9 @@ public class CodingActivity extends AppCompatActivity implements View.OnClickLis
                     myThread1=new Thread(){
                         @Override
                         public void run() {
-                            MLog.td("tjl","运行:"+tempfile);
-                            AppConst.cliPython.Start(tempfile);
+                           // MLog.td("tjl","运行:"+tempfile);
+                           // AppConst.cliPython.Start(tempfile);
+                            AppConst.chaquoPython.Start();
                           //  AppConst.cliPython.Stop();
                             MLog.td("tjl","运行完毕");
                         }

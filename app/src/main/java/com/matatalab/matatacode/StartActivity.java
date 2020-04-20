@@ -1,45 +1,24 @@
 package com.matatalab.matatacode;
 
 import android.Manifest;
-import android.app.Service;
-import android.bluetooth.BluetoothAdapter;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
-import android.os.Handler;
-import android.os.IBinder;
-import android.os.Message;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.TextView;
 
-import com.matatalab.matatacode.model.BrowserModel;
 import com.matatalab.matatacode.model.ChaquoPython;
-import com.matatalab.matatacode.model.CliPython;
 import com.matatalab.matatacode.model.FileStorageHelper;
-import com.matatalab.matatacode.model.MyAdapter;
-import com.matatalab.matatacode.model.PublicWay;
 import com.matatalab.matatacode.utils.MLog;
-import com.matatalab.matatacode.utils.ToastUtils;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Locale;
-import bsh.Interpreter;
 
 public class StartActivity extends AppCompatActivity {
     private TextView textview_as1;
@@ -139,7 +118,7 @@ public class StartActivity extends AppCompatActivity {
                 if (destDir2.exists()) MLog.td("tjl" , "run 文件夹存在");
                 else destDir2.mkdirs();
                // AppConst.cliPython = new CliPython(StartActivity.this , true);
-                ChaquoPython cp=new  ChaquoPython(StartActivity.this);
+                AppConst.chaquoPython=new  ChaquoPython(StartActivity.this);
                 startActivity(new Intent(StartActivity.this,FristActivity.class));//启动MainActivity
             }
         };

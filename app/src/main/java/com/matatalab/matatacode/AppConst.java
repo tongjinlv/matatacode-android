@@ -1,11 +1,9 @@
 package com.matatalab.matatacode;
 
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothGatt;
-import android.bluetooth.BluetoothGattCharacteristic;
 
 import com.inuker.bluetooth.library.BluetoothClient;
-import com.matatalab.matatacode.model.CliPython;
+import com.matatalab.matatacode.model.ChaquoPython;
 import com.matatalab.matatacode.model.MyBluetooth;
 
 public class AppConst {
@@ -75,11 +73,11 @@ public class AppConst {
     public static MyBluetooth myBluetooth;
     public  static String  devMac;
     public  static String lang;
-    public static CliPython cliPython;
     public static String runDirPath;
     public static BluetoothClient mClient;
     public static String DeviceName;
     public static String DeviceMac;
+    public static ChaquoPython chaquoPython;
     public static final String CODE_HEARD1= "# -*- coding: utf-8 -*-\r\nimport math\n" +
             "matatabot = MatataBotJavaClass(\"from python\")\r\nmatatabot.music.play_treble(\"do\",\"meter1\")\r\nmatatabot.music.play_treble(\"do\",\"meter1\")\r\n" +
             "matatabot.music.test2()\r\n"+
@@ -92,6 +90,7 @@ public class AppConst {
     public static final String UUID_NOTIFY = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
     public static final String UUID_WRITE = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
     public static byte[] onNotify;
+    public static Boolean pythonRun=false;
 
     /**
      * 蓝牙DFU名称
